@@ -14,10 +14,11 @@ package kivik
 
 import (
 	"context"
-	"encoding/json"
+
 	"net/http"
 
-	"github.com/go-kivik/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/driver"
+	jsoniter "github.com/json-iterator/go"
 )
 
 // Session represents an authentication session.
@@ -37,7 +38,7 @@ type Session struct {
 	AuthenticationHandlers []string
 	// RawResponse is the raw JSON response sent by the server, useful for
 	// custom backends which may provide additional fields.
-	RawResponse json.RawMessage
+	RawResponse jsoniter.RawMessage
 }
 
 // Session returns information about the currently authenticated user.

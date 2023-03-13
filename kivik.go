@@ -14,12 +14,13 @@ package kivik
 
 import (
 	"context"
-	"encoding/json"
+
 	"fmt"
 	"net/http"
 
-	"github.com/go-kivik/kivik/v4/driver"
-	"github.com/go-kivik/kivik/v4/internal/registry"
+	"github.com/dannyzhou2015/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/internal/registry"
+	jsoniter "github.com/json-iterator/go"
 )
 
 // Client is a client connection handle to a CouchDB-like server.
@@ -99,7 +100,7 @@ type Version struct {
 	//
 	// For the format of this document, see
 	// http://docs.couchdb.org/en/2.0.0/api/server/common.html#get
-	RawResponse json.RawMessage
+	RawResponse jsoniter.RawMessage
 }
 
 // Version returns version and vendor info about the backend.

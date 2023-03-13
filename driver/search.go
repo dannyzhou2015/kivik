@@ -14,7 +14,8 @@ package driver
 
 import (
 	"context"
-	"encoding/json"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 // SearchInfo is the result of a SearchInfo request.
@@ -22,7 +23,7 @@ type SearchInfo struct {
 	Name        string
 	SearchIndex SearchIndex
 	// RawMessage is the raw JSON response returned by the server.
-	RawResponse json.RawMessage
+	RawResponse jsoniter.RawMessage
 }
 
 // SearchIndex contains textual search index informatoin.

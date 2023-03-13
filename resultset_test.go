@@ -14,7 +14,7 @@ package kivik
 
 import (
 	"context"
-	"encoding/json"
+
 	"errors"
 	"io"
 	"net/http"
@@ -23,8 +23,9 @@ import (
 
 	"gitlab.com/flimzy/testy"
 
-	"github.com/go-kivik/kivik/v4/driver"
-	"github.com/go-kivik/kivik/v4/internal/mock"
+	"github.com/dannyzhou2015/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/internal/mock"
+	jsoniter "github.com/json-iterator/go"
 )
 
 func TestRowsNext(t *testing.T) {
@@ -462,7 +463,7 @@ func TestRowsGetters(t *testing.T) {
 		})
 
 		t.Run("ScanKey", func(t *testing.T) {
-			var result json.RawMessage
+			var result jsoniter.RawMessage
 			err := r.ScanKey(&result)
 			if err != nil {
 				t.Fatal(err)
@@ -560,7 +561,7 @@ func TestScanAllDocs(t *testing.T) {
 	})
 	tests.Add("Success", func() interface{} {
 		rows := []*driver.Row{
-			{Doc: json.RawMessage(`{"foo":"bar"}`)},
+			{Doc: jsoniter.RawMessage(`{"foo":"bar"}`)},
 		}
 		return tt{
 			rows: newRows(context.Background(), &mock.Rows{
@@ -573,12 +574,12 @@ func TestScanAllDocs(t *testing.T) {
 					return nil
 				},
 			}),
-			dest: func() *[]json.RawMessage { return &[]json.RawMessage{} }(),
+			dest: func() *[]jsoniter.RawMessage { return &[]jsoniter.RawMessage{} }(),
 		}
 	})
 	tests.Add("Success, slice of pointers", func() interface{} {
 		rows := []*driver.Row{
-			{Doc: json.RawMessage(`{"foo":"bar"}`)},
+			{Doc: jsoniter.RawMessage(`{"foo":"bar"}`)},
 		}
 		return tt{
 			rows: newRows(context.Background(), &mock.Rows{
@@ -591,12 +592,12 @@ func TestScanAllDocs(t *testing.T) {
 					return nil
 				},
 			}),
-			dest: func() *[]*json.RawMessage { return &[]*json.RawMessage{} }(),
+			dest: func() *[]*jsoniter.RawMessage { return &[]*jsoniter.RawMessage{} }(),
 		}
 	})
 	tests.Add("Success, long array", func() interface{} {
 		rows := []*driver.Row{
-			{Doc: json.RawMessage(`{"foo":"bar"}`)},
+			{Doc: jsoniter.RawMessage(`{"foo":"bar"}`)},
 		}
 		return tt{
 			rows: newRows(context.Background(), &mock.Rows{
@@ -609,14 +610,14 @@ func TestScanAllDocs(t *testing.T) {
 					return nil
 				},
 			}),
-			dest: func() *[5]*json.RawMessage { return &[5]*json.RawMessage{} }(),
+			dest: func() *[5]*jsoniter.RawMessage { return &[5]*jsoniter.RawMessage{} }(),
 		}
 	})
 	tests.Add("Success, short array", func() interface{} {
 		rows := []*driver.Row{
-			{Doc: json.RawMessage(`{"foo":"bar"}`)},
-			{Doc: json.RawMessage(`{"foo":"bar"}`)},
-			{Doc: json.RawMessage(`{"foo":"bar"}`)},
+			{Doc: jsoniter.RawMessage(`{"foo":"bar"}`)},
+			{Doc: jsoniter.RawMessage(`{"foo":"bar"}`)},
+			{Doc: jsoniter.RawMessage(`{"foo":"bar"}`)},
 		}
 		return tt{
 			rows: newRows(context.Background(), &mock.Rows{
@@ -629,7 +630,7 @@ func TestScanAllDocs(t *testing.T) {
 					return nil
 				},
 			}),
-			dest: func() *[1]*json.RawMessage { return &[1]*json.RawMessage{} }(),
+			dest: func() *[1]*jsoniter.RawMessage { return &[1]*jsoniter.RawMessage{} }(),
 		}
 	})
 	tests.Run(t, func(t *testing.T, tt tt) {

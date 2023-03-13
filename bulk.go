@@ -18,7 +18,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/go-kivik/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/driver"
 )
 
 // BulkResults is an iterator over the results of a BulkDocs query.

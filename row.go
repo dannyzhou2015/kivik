@@ -13,7 +13,6 @@
 package kivik
 
 import (
-	"encoding/json"
 	"io"
 	"sync/atomic"
 )

@@ -14,11 +14,11 @@ package kivik
 
 import (
 	"bytes"
-	"encoding/json"
+
 	"io"
 	"io/ioutil"
 
-	"github.com/go-kivik/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/driver"
 )
 
 // Attachments is a collection of one or more file attachments.

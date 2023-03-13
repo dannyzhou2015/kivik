@@ -69,7 +69,7 @@ gopherjs-1.16:
   <<: *test_template
   image: golang:1.16
   variables:
-    SRCDIR: /go/src/github.com/go-kivik/kivik/v4
+    SRCDIR: /go/src/github.com/dannyzhou2015/kivik/v4
   before_script:
   - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
   - curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -101,7 +101,7 @@ gopherjs-1.17:
   <<: *test_template
   image: golang:1.17
   variables:
-    SRCDIR: /go/src/github.com/go-kivik/kivik/v4
+    SRCDIR: /go/src/github.com/dannyzhou2015/kivik/v4
   before_script:
   - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
   - curl -sL https://deb.nodesource.com/setup_12.x | bash -

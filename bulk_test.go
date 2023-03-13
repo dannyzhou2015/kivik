@@ -14,7 +14,7 @@ package kivik
 
 import (
 	"context"
-	"encoding/json"
+
 	"errors"
 	"fmt"
 	"io"
@@ -23,8 +23,9 @@ import (
 
 	"gitlab.com/flimzy/testy"
 
-	"github.com/go-kivik/kivik/v4/driver"
-	"github.com/go-kivik/kivik/v4/internal/mock"
+	"github.com/dannyzhou2015/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/internal/mock"
+	jsoniter "github.com/json-iterator/go"
 )
 
 func TestBulkNext(t *testing.T) {
@@ -174,7 +175,7 @@ func TestDocsInterfaceSlice(t *testing.T) {
 			name: "JSONDoc",
 			input: []interface{}{
 				map[string]string{"foo": "bar"},
-				json.RawMessage(`{"foo":"bar"}`),
+				jsoniter.RawMessage(`{"foo":"bar"}`),
 			},
 			expected: []interface{}{
 				map[string]string{"foo": "bar"},
@@ -214,7 +215,7 @@ func TestBulkDocs(t *testing.T) { // nolint: gocyclo
 					return nil, err
 				},
 			},
-			docs:   []interface{}{json.RawMessage("invalid json")},
+			docs:   []interface{}{jsoniter.RawMessage("invalid json")},
 			status: http.StatusInternalServerError,
 			err:    "json: error calling MarshalJSON for type json.RawMessage: invalid character 'i' looking for beginning of value",
 		},

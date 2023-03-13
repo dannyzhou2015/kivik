@@ -14,12 +14,12 @@ package kivik
 
 import (
 	"context"
-	"encoding/json"
+
 	"errors"
 	"net/http"
 	"reflect"
 
-	"github.com/go-kivik/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/driver"
 )
 
 // ResultMetadata contains metadata about certain queries.

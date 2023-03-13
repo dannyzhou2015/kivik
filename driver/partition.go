@@ -14,7 +14,8 @@ package driver
 
 import (
 	"context"
-	"encoding/json"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 // PartitionedDB is an optional interface that may be satisfied by a DB to
@@ -32,5 +33,5 @@ type PartitionStats struct {
 	Partition       string
 	ActiveSize      int64
 	ExternalSize    int64
-	RawResponse     json.RawMessage
+	RawResponse     jsoniter.RawMessage
 }

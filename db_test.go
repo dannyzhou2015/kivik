@@ -14,7 +14,7 @@ package kivik
 
 import (
 	"context"
-	"encoding/json"
+
 	"errors"
 	"fmt"
 	"io"
@@ -25,8 +25,9 @@ import (
 
 	"gitlab.com/flimzy/testy"
 
-	"github.com/go-kivik/kivik/v4/driver"
-	"github.com/go-kivik/kivik/v4/internal/mock"
+	"github.com/dannyzhou2015/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/internal/mock"
+	jsoniter "github.com/json-iterator/go"
 )
 
 func TestClient(t *testing.T) {
@@ -1012,7 +1013,7 @@ func TestNormalizeFromJSON(t *testing.T) {
 		},
 		{
 			Name:     "RawMessage",
-			Input:    json.RawMessage(`{"foo":"bar"}`),
+			Input:    jsoniter.RawMessage(`{"foo":"bar"}`),
 			Expected: map[string]interface{}{"foo": "bar"},
 		},
 		{
@@ -1105,7 +1106,7 @@ func TestPut(t *testing.T) {
 				},
 			},
 			docID:  "foo",
-			input:  json.RawMessage("Something bogus"),
+			input:  jsoniter.RawMessage("Something bogus"),
 			status: http.StatusInternalServerError,
 			err:    "Unexpected doc: failed to marshal actual value: invalid character 'S' looking for beginning of value",
 		},
@@ -1129,7 +1130,7 @@ func TestPut(t *testing.T) {
 				},
 			},
 			docID:   "foo",
-			input:   json.RawMessage(`{"foo":"bar"}`),
+			input:   jsoniter.RawMessage(`{"foo":"bar"}`),
 			options: testOptions,
 			newRev:  "1-xxx",
 		},

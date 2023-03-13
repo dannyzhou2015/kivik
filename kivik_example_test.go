@@ -15,9 +15,9 @@ package kivik_test
 import (
 	"fmt"
 
-	kivik "github.com/go-kivik/kivik/v4"
-	"github.com/go-kivik/kivik/v4/driver"
-	"github.com/go-kivik/kivik/v4/internal/mock"
+	kivik "github.com/dannyzhou2015/kivik/v4"
+	"github.com/dannyzhou2015/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/internal/mock"
 )
 
 func init() {

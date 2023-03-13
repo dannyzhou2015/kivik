@@ -15,7 +15,7 @@ package mock
 import (
 	"context"
 
-	"github.com/go-kivik/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/driver"
 )
 
 // DB mocks a driver.DB

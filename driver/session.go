@@ -14,7 +14,8 @@ package driver
 
 import (
 	"context"
-	"encoding/json"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 // Session is a copy of kivik.Session
@@ -34,7 +35,7 @@ type Session struct {
 	AuthenticationHandlers []string
 	// RawResponse is the raw JSON response sent by the server, useful for
 	// custom backends which may provide additional fields.
-	RawResponse json.RawMessage
+	RawResponse jsoniter.RawMessage
 }
 
 // Sessioner is an optional interface that a Client may satisfy to provide

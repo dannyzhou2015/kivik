@@ -12,7 +12,7 @@
 
 package driver
 
-import "encoding/json"
+import jsoniter "github.com/json-iterator/go"
 
 // Changes is an iterator of the database changes feed.
 type Changes interface {
@@ -45,7 +45,7 @@ type Change struct {
 	Changes ChangedRevs `json:"changes"`
 	// Doc is the raw, un-decoded JSON document. This is only populated when
 	// include_docs=true is set.
-	Doc json.RawMessage `json:"doc"`
+	Doc jsoniter.RawMessage `json:"doc"`
 }
 
 // ChangedRevs represents a "changes" field of a result in the /_changes stream.

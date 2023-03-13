@@ -1,4 +1,4 @@
-[![Build Status](https://gitlab.com/go-kivik/kivik/badges/master/pipeline.svg)](https://gitlab.com/go-kivik/kivik/pipelines) [![Codecov](https://img.shields.io/codecov/c/github/go-kivik/kivik.svg?style=flat)](https://codecov.io/gh/go-kivik/kivik) [![Go Report Card](https://goreportcard.com/badge/github.com/go-kivik/kivik)](https://goreportcard.com/report/github.com/go-kivik/kivik) [![GoDoc](https://godoc.org/github.com/go-kivik/kivik?status.svg)](https://pkg.go.dev/github.com/go-kivik/kivik/v4) [![Website](https://img.shields.io/website-up-down-green-red/http/kivik.io.svg?label=website&colorB=007fff)](http://kivik.io)
+[![Build Status](https://gitlab.com/go-kivik/kivik/badges/master/pipeline.svg)](https://gitlab.com/go-kivik/kivik/pipelines) [![Codecov](https://img.shields.io/codecov/c/github/go-kivik/kivik.svg?style=flat)](https://codecov.io/gh/go-kivik/kivik) [![Go Report Card](https://goreportcard.com/badge/github.com/go-kivik/kivik)](https://goreportcard.com/report/github.com/go-kivik/kivik) [![GoDoc](https://godoc.org/github.com/go-kivik/kivik?status.svg)](https://pkg.go.dev/github.com/dannyzhou2015/kivik/v4) [![Website](https://img.shields.io/website-up-down-green-red/http/kivik.io.svg?label=website&colorB=007fff)](http://kivik.io)
 
 # Kivik
 
@@ -33,14 +33,14 @@ project is already using Go modules, simply fetch the desired version:
 
 ```shell
 go get github.com/go-kivik/kivik/v3 # Stable release
-go get github.com/go-kivik/kivik/v4 # Development release
+go get github.com/dannyzhou2015/kivik/v4 # Development release
 ```
 
 # Installation
 
 Install Kivik as you normally would for any Go package:
 
-    go get -u github.com/go-kivik/kivik/v4
+    go get -u github.com/dannyzhou2015/kivik/v4
     go get -u github.com/go-kivik/couchdb/v4
 
 This will install the main Kivik package and the CouchDB database driver. See
@@ -60,7 +60,7 @@ import (
     "context"
     "fmt"
 
-    kivik "github.com/go-kivik/kivik/v4"
+    kivik "github.com/dannyzhou2015/kivik/v4"
     _ "github.com/go-kivik/couchdb/v4" // The CouchDB driver
 )
 

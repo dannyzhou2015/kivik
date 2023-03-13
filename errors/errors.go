@@ -13,14 +13,17 @@
 // Package errors provides convenience functions for Kivik drivers to report
 // meaningful errors. This package is not conisidered part of the kivik public
 // API and is subject to change without notice.
-package errors // import "github.com/go-kivik/kivik/v4/errors"
+package errors // import "github.com/dannyzhou2015/kivik/v4/errors"
 
 import (
-	"encoding/json"
 	"fmt"
+
+	jsoniter "github.com/json-iterator/go"
 
 	"github.com/pkg/errors"
 )
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 // statusError is an error message bundled with an HTTP status code.
 type statusError struct {

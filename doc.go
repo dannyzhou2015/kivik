@@ -89,4 +89,4 @@ additional authentication methods. Please refer to the CouchDB package
 documentation for details (https://pkg.go.dev/github.com/go-kivik/couchdb/v4).
 
 */
-package kivik // import "github.com/go-kivik/kivik/v4"
+package kivik // import "github.com/dannyzhou2015/kivik/v4"

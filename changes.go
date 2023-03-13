@@ -14,9 +14,8 @@ package kivik
 
 import (
 	"context"
-	"encoding/json"
 
-	"github.com/go-kivik/kivik/v4/driver"
+	"github.com/dannyzhou2015/kivik/v4/driver"
 )
 
 // Changes is an iterator over the database changes feed.

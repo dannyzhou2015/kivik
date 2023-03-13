@@ -14,15 +14,19 @@ package kivik
 
 import (
 	"context"
-	"encoding/json"
+	ejson "encoding/json"
 	"errors"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"strings"
 
-	"github.com/go-kivik/kivik/v4/driver"
+	jsoniter "github.com/json-iterator/go"
+
+	"github.com/dannyzhou2015/kivik/v4/driver"
 )
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 // DB is a handle to a specific database.
 type DB struct {
@@ -165,14 +169,14 @@ func (db *DB) CreateDoc(ctx context.Context, doc interface{}, options ...Options
 // map[string]interface{}, or passed through any other types.
 func normalizeFromJSON(i interface{}) (interface{}, error) {
 	switch t := i.(type) {
-	case json.Marshaler:
+	case ejson.Marshaler:
 		return t, nil
 	case io.Reader:
 		body, err := ioutil.ReadAll(t)
 		if err != nil {
 			return nil, &Error{HTTPStatus: http.StatusBadRequest, Err: err}
 		}
-		return json.RawMessage(body), nil
+		return jsoniter.RawMessage(body), nil
 	default:
 		return i, nil
 	}
@@ -292,7 +296,7 @@ type DBStats struct {
 	//
 	// For the format of this document, see
 	// http://docs.couchdb.org/en/2.1.1/api/database/common.html#get--db
-	RawResponse json.RawMessage `json:"-"`
+	RawResponse jsoniter.RawMessage `json:"-"`
 }
 
 // ClusterConfig contains the cluster configuration for the database.
@@ -662,7 +666,7 @@ type PartitionStats struct {
 	Partition       string
 	ActiveSize      int64
 	ExternalSize    int64
-	RawResponse     json.RawMessage
+	RawResponse     jsoniter.RawMessage
 }
 
 // PartitionStats returns statistics about the named partition.

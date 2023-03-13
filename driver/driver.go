@@ -14,10 +14,13 @@ package driver
 
 import (
 	"context"
-	"encoding/json"
 	"io"
 	"time"
+
+	jsoniter "github.com/json-iterator/go"
 )
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 // Driver is the interface that must be implemented by a database driver.
 type Driver interface {
@@ -36,7 +39,7 @@ type Version struct {
 	// CouchDB 2.1.0, and can be expected to be empty for older versions.
 	Features []string
 	// RawResponse is the raw response body as returned by the server.
-	RawResponse json.RawMessage
+	RawResponse jsoniter.RawMessage
 }
 
 // Client is a connection to a database server.
@@ -119,16 +122,16 @@ type Authenticator interface {
 
 // DBStats contains database statistics.
 type DBStats struct {
-	Name           string          `json:"db_name"`
-	CompactRunning bool            `json:"compact_running"`
-	DocCount       int64           `json:"doc_count"`
-	DeletedCount   int64           `json:"doc_del_count"`
-	UpdateSeq      string          `json:"update_seq"`
-	DiskSize       int64           `json:"disk_size"`
-	ActiveSize     int64           `json:"data_size"`
-	ExternalSize   int64           `json:"-"`
-	Cluster        *ClusterStats   `json:"cluster,omitempty"`
-	RawResponse    json.RawMessage `json:"-"`
+	Name           string              `json:"db_name"`
+	CompactRunning bool                `json:"compact_running"`
+	DocCount       int64               `json:"doc_count"`
+	DeletedCount   int64               `json:"doc_del_count"`
+	UpdateSeq      string              `json:"update_seq"`
+	DiskSize       int64               `json:"disk_size"`
+	ActiveSize     int64               `json:"data_size"`
+	ExternalSize   int64               `json:"-"`
+	Cluster        *ClusterStats       `json:"cluster,omitempty"`
+	RawResponse    jsoniter.RawMessage `json:"-"`
 }
 
 // ClusterStats contains the cluster configuration for the database.
@@ -283,13 +286,13 @@ type Finder interface {
 // query interface.
 type OptsFinder interface {
 	// Find executes a query using the new /_find interface. If query is a
-	// string, []byte, or json.RawMessage, it should be treated as a raw JSON
+	// string, []byte, or jsoniter.RawMessage, it should be treated as a raw JSON
 	// payload. Any other type should be marshaled to JSON.
 	Find(ctx context.Context, query interface{}, options map[string]interface{}) (Rows, error)
 	// CreateIndex creates an index if it doesn't already exist. If the index
 	// already exists, it should do nothing. ddoc and name may be empty, in
 	// which case they should be provided by the backend. If index is a string,
-	// []byte, or json.RawMessage, it should be treated as a raw JSON payload.
+	// []byte, or jsoniter.RawMessage, it should be treated as a raw JSON payload.
 	// Any other type should be marshaled to JSON.
 	CreateIndex(ctx context.Context, ddoc, name string, index interface{}, options map[string]interface{}) error
 	// GetIndexes returns a list of all indexes in the database.
